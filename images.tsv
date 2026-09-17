@@ -9,19 +9,26 @@
 # Adding a new photo: drop a JPG (~1200px on the long edge) into assets/ and point a slot at it.
 # build.py will shrink anything oversized if a resizing tool is available.
 
-# --- Cover / river ---
-cover	assets/cover.jpg
+# --- Cover / opener (real campaign photography) ---
+cover_img	assets/cover_img.jpg
 river_main	assets/river_main.jpg
-close	assets/close.jpg
 
-# --- City (three different scenes, BR-001 Core Black) ---
-st1	assets/st1.jpg
-st2	assets/st2.jpg
-st3	assets/st3.jpg
+# --- City, three different scenes ---
+c1	assets/c1.jpg
+c2	assets/c2.jpg
+c3	assets/c3.jpg
 
-# --- Studio crops (no faces, BR-001 Core Black) ---
+# --- Full-width plate ---
+plate_img	assets/plate_img.jpg
+
+# --- Studio (Quiet Performance) ---
 qp1	assets/qp1.jpg
 qp2	assets/qp2.jpg
+qp3	assets/qp3.jpg
+
+# --- Dari Club ---
+club1	assets/club1.jpg
+club2	assets/club2.jpg
 
 # --- Product (real product photography) ---
 pr_side	assets/pr_side.jpg
