@@ -9,16 +9,19 @@
 # Adding a new photo: drop a JPG (~1200px on the long edge) into assets/ and point a slot at it.
 # build.py will shrink anything oversized if a resizing tool is available.
 
-# --- Cover / Han River ---
+# --- Cover / river ---
 cover	assets/cover.jpg
-dusk	assets/dusk.jpg
+river_main	assets/river_main.jpg
 close	assets/close.jpg
 
-# --- City street ---
-st_walk	assets/st_walk.jpg
-st_night	assets/st_night.jpg
-st_alley	assets/st_alley.jpg
-st_curb	assets/st_curb.jpg
+# --- City (three different scenes, BR-001 Core Black) ---
+st1	assets/st1.jpg
+st2	assets/st2.jpg
+st3	assets/st3.jpg
+
+# --- Studio crops (no faces, BR-001 Core Black) ---
+qp1	assets/qp1.jpg
+qp2	assets/qp2.jpg
 
 # --- Product (real product photography) ---
 pr_side	assets/pr_side.jpg
