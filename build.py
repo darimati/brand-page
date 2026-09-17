@@ -77,9 +77,9 @@ def read_manifest():
         line = raw.strip()
         if not line or line.startswith('#'):
             continue
-        parts = [p.strip() for p in line.split('\t') if p.strip()]
+        parts = [p for p in line.replace('\t', ' ').replace(',', ' ').split() if p]
         if len(parts) < 2:
-            sys.exit(f'images.tsv {lineno}행: 슬롯과 경로를 탭으로 구분해 주세요 → {line}')
+            sys.exit(f'images.tsv {lineno}행: 슬롯 이름과 사진 경로, 두 개가 필요합니다 → {line}')
         slot, rel = parts[0], parts[1]
         if slot in seen:
             sys.exit(f'images.tsv {lineno}행: 슬롯 이름이 중복됩니다 → {slot}')
@@ -155,7 +155,39 @@ def main():
         '<code>images.tsv</code> 에서 경로만 바꾸고 <code>python3 build.py</code> 를 실행하세요.</p>'
         f'<div class="grid">{"".join(items)}</div>')
     open(os.path.join(HERE, 'slots.html'), 'w', encoding='utf-8').write(slots_doc)
-    print('→ slots.html  (슬롯 확인용)')
+    print('→ slots.html  (지금 페이지에 쓰인 사진)')
+
+    # library.html — 쓸 수 있는 사진 전체 목록
+    import glob
+    lib = []
+    for d in ('library', 'assets'):
+        for p in sorted(glob.glob(os.path.join(HERE, d, '*.jpg'))):
+            name = os.path.splitext(os.path.basename(p))[0]
+            lib.append((name, f'{d}/{os.path.basename(p)}'))
+    litems = ''.join(
+        f'<figure><img src="{html.escape(rel, quote=True)}" alt="{html.escape(n)}" loading="lazy">'
+        f'<figcaption><b>{html.escape(n)}</b></figcaption></figure>' for n, rel in lib)
+    lib_doc = (
+        '<!-- 자동 생성 파일입니다 (build.py) -->'
+        '<title>Image library — DARIMATI</title><meta charset="utf-8">'
+        '<style>'
+        'body{font:13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;'
+        'margin:0;padding:24px;background:#fafafa;color:#111}'
+        'h1{font-size:14px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px}'
+        'p.hint{color:#666;margin:0 0 22px;max-width:76ch}'
+        'code{background:#eee;padding:1px 6px}'
+        '.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}'
+        'figure{margin:0;background:#fff;border:1px solid #e3e3e3}'
+        'img{width:100%;height:230px;object-fit:cover;display:block;background:#eee}'
+        'figcaption{padding:8px 10px;font-size:12px}'
+        '</style>'
+        '<h1>Image library</h1>'
+        f'<p class="hint">쓸 수 있는 사진 {len(lib)}장입니다. 마음에 드는 사진 아래 <b>이름</b>을 확인한 뒤, '
+        '터미널에서 <code>python3 swap.py &lt;슬롯이름&gt; &lt;사진이름&gt;</code> 을 실행하세요. '
+        '슬롯 이름은 <code>slots.html</code> 에 있습니다.</p>'
+        f'<div class="grid">{litems}</div>')
+    open(os.path.join(HERE, 'library.html'), 'w', encoding='utf-8').write(lib_doc)
+    print(f'→ library.html  (쓸 수 있는 사진 {len(lib)}장)')
 
 
 if __name__ == '__main__':
