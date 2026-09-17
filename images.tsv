@@ -1,0 +1,34 @@
+# Image slots for the brand page
+#
+# Format:  slot <TAB> path
+#   - path is relative to this repo (normally inside assets/)
+#   - separate with a TAB, not spaces
+#   - to swap an image, change the path and run `python3 build.py`
+#   - open slots.html in a browser to see which slot is which
+#
+# Adding a new photo: drop a JPG (~1200px on the long edge) into assets/ and point a slot at it.
+# build.py will shrink anything oversized if a resizing tool is available.
+
+# --- Cover / Han River ---
+cover	assets/cover.jpg
+dusk	assets/dusk.jpg
+close	assets/close.jpg
+
+# --- City street ---
+st_walk	assets/st_walk.jpg
+st_night	assets/st_night.jpg
+st_alley	assets/st_alley.jpg
+st_curb	assets/st_curb.jpg
+
+# --- Product (real product photography) ---
+pr_side	assets/pr_side.jpg
+pr_heel	assets/pr_heel.jpg
+pr_sole	assets/pr_sole.jpg
+pr_white	assets/pr_white.jpg
+pr_wmain	assets/pr_wmain.jpg
+
+# --- DARI magazine (scans) ---
+mag_cover	assets/mag_cover.jpg
+mag_a	assets/mag_a.jpg
+mag_b	assets/mag_b.jpg
+mag_c	assets/mag_c.jpg
